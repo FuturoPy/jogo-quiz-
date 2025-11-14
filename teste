@@ -1,0 +1,227 @@
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/professor.jpg.png" />
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/98731975-fundo-dos-desenhos-animados-do-vetor-de-volta-%C3%A0-faculdade-sala-de-aula-da-escola-vazia-interior.webp" />
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/399486249fae9d95aecc223e0f7d3d2f.webp" />
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/f5856a22-4b8f-4995-8fe3-d71b28c22f62.png" />
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/chat.png" />
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/f5856a22-4b8f-4995-8fe3-d71b28c22f62%20(1).png" />
+
+
+
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/erro.png" />
+<img src="https://uploads.onecompiler.io/444jywmud/444jyqxv3/interior-of-a-school-classroom-with-wooden-desks-and-chairs.webp" />
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Escolar 🎓</title>
+<style>
+  body {
+    font-family: "Comic Sans MS", Arial, sans-serif;
+    background-image: url('https://uploads.onecompiler.io/444jywmud/444jyqxv3/98731975-fundo-dos-desenhos-animados-do-vetor-de-volta-%C3%A0-faculdade-sala-de-aula-da-escola-vazia-interior.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: 0;
+    padding: 40px;
+  }
+
+  .quiz-container {
+    background-color: rgba(255,255,255,0.0);
+    max-width: 900px;
+    margin: auto;
+    padding: 0;
+  }
+
+  h1 {
+    color: #0078d7;
+    margin-bottom: 10px;
+  }
+
+  .area-jogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  /* Professor */
+  .professor {
+    width: 250px;
+    height: 330px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: idle 3s ease-in-out infinite;
+  }
+
+  @keyframes idle {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes shake {
+    0% { transform: translateX(0px); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+    100% { transform: translateX(0px); }
+  }
+
+  @keyframes jump {
+    0% { transform: translateY(0px); }
+    30% { transform: translateY(-18px); }
+    60% { transform: translateY(0px); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* Quadro de fundo */
+  .quadro {
+    width: 500px;
+    height: 340px;
+    background-image: url('https://uploads.onecompiler.io/444jywmud/444jyqxv3/Captura%20de%20tela%202025-11-13%20192905.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px;
+    padding-left: 70px;
+    color: white;
+    font-size: 22px;
+  }
+
+  button {
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin: 6px 0;
+    font-size: 17px;
+    width: 100%;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #005fa3;
+    transform: scale(1.03);
+  }
+
+  .feedback {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+  .correct { color: #00ff00; }
+  .wrong { color: #ff4444; }
+</style>
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+  <div class="area-jogo">
+
+    <!-- PROFESSOR -->
+    <div class="professor" id="professor"
+         style="background-image: url('https://uploads.onecompiler.io/444jywmud/444jyqxv3/chat.png');">
+    </div>
+
+    <!-- QUADRO -->
+    <div class="quadro">
+      <div id="question"></div>
+      <div id="answers"></div>
+      <div id="feedback" class="feedback"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const imgCerta = "https://uploads.onecompiler.io/444jywmud/444jyqxv3/chat.png";
+const imgErrada = "https://uploads.onecompiler.io/444jywmud/444jyqxv3/erro.png";
+
+const perguntas = [
+  { pergunta: "📚 Português: Qual dessas palavras está escrita corretamente?",
+    opcoes: ["Excessão", "Exceção", "Exceçâo"], certa: 1 },
+  { pergunta: "🧮 Matemática: Quanto é 9 + 6?",
+    opcoes: ["15", "14", "16"], certa: 0 },
+  { pergunta: "🌎 Geografia: Qual é o maior continente do mundo?",
+    opcoes: ["África", "Ásia", "Europa"], certa: 1 },
+  { pergunta: "🔬 Ciências: Qual parte do corpo bombeia o sangue?",
+    opcoes: ["Cérebro", "Pulmão", "Coração"], certa: 2 },
+  { pergunta: "🏛️ História: Quem descobriu o Brasil?",
+    opcoes: ["Cristóvão Colombo", "Pedro Álvares Cabral", "Dom Pedro II"], certa: 1 }
+];
+
+let indice = 0;
+const professor = document.getElementById("professor");
+const feedback = document.getElementById("feedback");
+
+function mostrarPergunta() {
+  const q = perguntas[indice];
+  document.getElementById("question").textContent = q.pergunta;
+
+  const respostasDiv = document.getElementById("answers");
+  respostasDiv.innerHTML = "";
+  feedback.textContent = "";
+
+  professor.style.backgroundImage = `url(${imgCerta})`;
+
+  q.opcoes.forEach((opcao, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = opcao;
+    btn.onclick = () => checkAnswer(i === q.certa);
+    respostasDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(certa) {
+  if (certa) {
+    feedback.textContent = "🎉 Muito bem!";
+    feedback.className = "feedback correct";
+    professor.style.backgroundImage = `url(${imgCerta})`;
+    professor.style.animation = "jump 0.6s";
+
+    setTimeout(() => {
+      professor.style.animation = "idle 3s ease-in-out infinite";
+      indice++;
+      if (indice < perguntas.length) {
+        mostrarPergunta();
+      } else {
+        document.querySelector(".quiz-container").innerHTML =
+          "<h1>🎊 Parabéns! Você terminou o quiz! 👏</h1>";
+      }
+    }, 600);
+
+  } else {
+    feedback.textContent = "😅 Tente novamente!";
+    feedback.className = "feedback wrong";
+    professor.style.backgroundImage = `url(${imgErrada})`;
+
+    professor.style.animation = "shake 0.5s";
+
+    setTimeout(() => {
+      professor.style.animation = "idle 3s ease-in-out infinite";
+    }, 500);
+  }
+}
+
+mostrarPergunta();
+</script>
+
+</body>
+</html>
